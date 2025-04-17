@@ -66,7 +66,6 @@ const AddProduct = () => {
                     "Content-Type": "multipart/form-data",
                 },
                 withCredentials: true,
-                timeout: 60000,
             });
 
             if (response.data.success) {

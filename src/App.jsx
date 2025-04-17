@@ -10,39 +10,40 @@ import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
     const serverURL = "https://luxorabackend.onrender.com/api/v1";
 
     useEffect(() => {
         try {
-            const response = axios.get(serverURL+"/admin/is-auth", { withCredentials: true })
-            if(response.data.success){
+            const response = axios.get(serverURL + "/admin/is-auth", {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            });
+            if (response.data.success) {
                 setIsAuthenticated(true);
             }
-            
         } catch (error) {
-            console.log(error+"auth error");
+            console.log(error + "auth error");
             setIsAuthenticated(false);
-            
         }
     }, []);
 
     useEffect(() => {
         if (isAuthenticated === null) {
-          Swal.fire({
-            title: "Checking login...",
-            allowOutsideClick: false,
-            didOpen: () => {
-              Swal.showLoading();
-            },
-          });
+            Swal.fire({
+                title: "Checking login...",
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
         } else {
-          Swal.close();
+            Swal.close();
         }
-      }, [isAuthenticated]);
-      
+    }, [isAuthenticated]);
 
     return (
         <>
