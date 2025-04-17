@@ -16,14 +16,17 @@ function App() {
     const serverURL = "https://luxorabackend.onrender.com/api/v1";
 
     useEffect(() => {
-        axios
-            .get(serverURL+"/admin/is-auth", { withCredentials: true })
-            .then((res) => {
+        try {
+            const response = axios.get(serverURL+"/admin/is-auth", { withCredentials: true })
+            if(response.data.success){
                 setIsAuthenticated(true);
-            })
-            .catch(() => {
-                setIsAuthenticated(false);
-            });
+            }
+            
+        } catch (error) {
+            console.log(error+"auth error");
+            setIsAuthenticated(false);
+            
+        }
     }, []);
 
     useEffect(() => {
