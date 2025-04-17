@@ -13,10 +13,11 @@ import Swal from "sweetalert2";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
+    const serverURL = "https://luxorabackend.onrender.com/api/v1";
 
     useEffect(() => {
         axios
-            .get("/api/v1/admin/is-auth", { withCredentials: true })
+            .get(serverURL+"/admin/is-auth", { withCredentials: true })
             .then((res) => {
                 setIsAuthenticated(true);
             })
