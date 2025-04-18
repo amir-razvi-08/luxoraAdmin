@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AdminLogin from "./pages/AdminLogin";
+import AdminLogin from "./AdminLogin";
 import AdminNavbar from "./adminComponents/AdminNavbar";
 import Sidebar from "./adminComponents/Sidebar";
 import AddProduct from "./adminPages/AddProduct";

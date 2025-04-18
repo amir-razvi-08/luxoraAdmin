@@ -13,7 +13,12 @@ const AdminLogin = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(serverURL + "/admin/login", { email, password });
+            const response = await axios.post(serverURL + "/admin/login", { email, password },{
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            });
 
             if (response.data.success) {
                 localStorage.setItem("authToken", response.data.data.accessToken);
